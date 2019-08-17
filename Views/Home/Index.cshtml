@@ -1,1 +1,26 @@
-﻿<h1>Welcome to Chefs'n Dishes</h1>
+﻿@model List<Chef>
+    <h1 class="text-center">Welcome to Chefs'n Dishes</h1>
+    <div class="row justify-content-center">
+        <h2 class="text-center col-3">Chefs | <a href="">Dishes</a></h2>
+        <p class="text-right col-2"><a asp-action="NewChef" asp-controller="Home">Add a Chef</a></p>
+    </div>
+
+<table class="table table-sm">
+    <thead>
+        <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Number of Dishes</th>
+        </tr>
+    </thead>
+    <tbody>     
+    @foreach(var chef in Model)
+    {
+        <tr>
+            <td>@chef.FirstName @chef.LastName</td>
+            <td>@chef.Birthday</td>
+            <td>TBD</td>
+        </tr>
+    }
+    </tbody>
+</table>

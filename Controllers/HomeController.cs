@@ -17,9 +17,39 @@ namespace ChefsNDishes.Controllers
         {
             dbContext = context;
         }
+
+        [HttpGet("")]
         public IActionResult Index()
         {
+            List<Chef> allChefs = dbContext.Chefs.ToList();
+            return View("Index", allChefs);
+        }
+
+        [HttpGet("newchef")]
+        public IActionResult NewChef()
+        {
             return View();
+        }
+
+        [HttpPost("createchef")]
+        public IActionResult CreateChef(Chef newChef)
+        {
+            if(ModelState.IsValid)
+            {
+                dbContext.Add(newChef);
+                dbContext.SaveChanges();
+
+                // to properly update CreatedAt and UpdatedAt
+                newChef.CreatedAt = DateTime.Now;
+                newChef.UpdatedAt = DateTime.Now;
+                dbContext.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View("NewChef");
+            }
         }
 
     }

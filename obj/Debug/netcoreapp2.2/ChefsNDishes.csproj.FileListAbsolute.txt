@@ -28,3 +28,4 @@
 /Users/stevenchung/Documents/coding_dojo/c#_stack/entity/ChefsNDishes/obj/Debug/netcoreapp2.2/ChefsNDishes.dll
 /Users/stevenchung/Documents/coding_dojo/c#_stack/entity/ChefsNDishes/obj/Debug/netcoreapp2.2/ChefsNDishes.pdb
 /Users/stevenchung/Documents/coding_dojo/c#_stack/entity/ChefsNDishes/obj/Debug/netcoreapp2.2/ChefsNDishes.csproj.CopyComplete
+/Users/stevenchung/Documents/coding_dojo/c#_stack/entity/ChefsNDishes/obj/Debug/netcoreapp2.2/Razor/Views/Home/NewChef.g.cshtml.cs

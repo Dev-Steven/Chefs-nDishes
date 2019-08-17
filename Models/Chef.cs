@@ -16,6 +16,8 @@ using System.Collections.Generic;   // For List types
             public string LastName {get;set;}
 
             [Required]
+            [DataType(DataType.Date)]
+            [BirthdayValidator]
             public string Birthday {get;set;}
 
             public List<Dish> CreatedDishes {get;set;}
