@@ -1,14 +1,16 @@
 ﻿@model List<Chef>
-    <h1 class="text-center">Welcome to Chefs'n Dishes</h1>
-    <div class="row justify-content-center">
-        <h2 class="text-center col-3">Chefs | <a href="">Dishes</a></h2>
-        <p class="text-right col-2"><a asp-action="NewChef" asp-controller="Home">Add a Chef</a></p>
-    </div>
+
+<div class="row justify-content-center">
+    <h1 class="text-center col-4">Chefs | <a asp-action="Dishes" asp-controller="Home">Dishes</a></h1>
+    <p class="text-right col-2"><a asp-action="NewChef" asp-controller="Home">Add a Chef</a></p>
+</div>
+
+<h2>The Beastest Chefs!</h2>
 
 <table class="table table-sm">
     <thead>
         <tr>
-        <th scope="col">Name</th>
+        <th scope="col">Chef</th>
         <th scope="col">Age</th>
         <th scope="col">Number of Dishes</th>
         </tr>
@@ -18,8 +20,8 @@
     {
         <tr>
             <td>@chef.FirstName @chef.LastName</td>
-            <td>@chef.Birthday</td>
-            <td>TBD</td>
+            <td>@chef.Age years old</td>
+            <td>@chef.CreatedDishes.Count dishes</td>
         </tr>
     }
     </tbody>

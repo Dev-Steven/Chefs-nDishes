@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ChefsNDishes.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20190817213622_DateMigrations")]
-    partial class DateMigrations
+    [Migration("20190818080115_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,8 @@ namespace ChefsNDishes.Migrations
                 {
                     b.Property<int>("ChefId")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Age");
 
                     b.Property<string>("Birthday")
                         .IsRequired();
@@ -47,9 +49,10 @@ namespace ChefsNDishes.Migrations
                     b.Property<int>("DishId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("Calories");
+                    b.Property<int?>("Calories")
+                        .IsRequired();
 
-                    b.Property<int>("ChefId");
+                    b.Property<int?>("ChefId");
 
                     b.Property<DateTime>("CreatedAt");
 
@@ -74,8 +77,7 @@ namespace ChefsNDishes.Migrations
                 {
                     b.HasOne("ChefsNDishes.Models.Chef", "Creator")
                         .WithMany("CreatedDishes")
-                        .HasForeignKey("ChefId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ChefId");
                 });
 #pragma warning restore 612, 618
         }

@@ -20,6 +20,8 @@ using System.Collections.Generic;   // For List types
             [BirthdayValidator]
             public string Birthday {get;set;}
 
+            public int Age {get;set;}
+
             public List<Dish> CreatedDishes {get;set;}
 
             public DateTime CreatedAt {get;set;} = DateTime.Now;

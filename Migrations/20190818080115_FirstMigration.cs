@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ChefsNDishes.Migrations
@@ -15,7 +16,10 @@ namespace ChefsNDishes.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     FirstName = table.Column<string>(nullable: false),
                     LastName = table.Column<string>(nullable: false),
-                    Birthday = table.Column<string>(nullable: false)
+                    Birthday = table.Column<string>(nullable: false),
+                    Age = table.Column<int>(nullable: false),
+                    CreatedAt = table.Column<DateTime>(nullable: false),
+                    UpdatedAt = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -31,8 +35,10 @@ namespace ChefsNDishes.Migrations
                     Name = table.Column<string>(nullable: false),
                     Calories = table.Column<int>(nullable: false),
                     Description = table.Column<string>(nullable: false),
-                    ChefId = table.Column<int>(nullable: false),
-                    Tastiness = table.Column<int>(nullable: false)
+                    ChefId = table.Column<int>(nullable: true),
+                    Tastiness = table.Column<int>(nullable: false),
+                    CreatedAt = table.Column<DateTime>(nullable: false),
+                    UpdatedAt = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -42,7 +48,7 @@ namespace ChefsNDishes.Migrations
                         column: x => x.ChefId,
                         principalTable: "Chefs",
                         principalColumn: "ChefId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(

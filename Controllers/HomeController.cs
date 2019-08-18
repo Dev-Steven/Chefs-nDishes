@@ -21,7 +21,9 @@ namespace ChefsNDishes.Controllers
         [HttpGet("")]
         public IActionResult Index()
         {
-            List<Chef> allChefs = dbContext.Chefs.ToList();
+            List<Chef> allChefs = dbContext.Chefs
+                .Include(c => c.CreatedDishes)
+                .ToList();
             return View("Index", allChefs);
         }
 
@@ -36,19 +38,83 @@ namespace ChefsNDishes.Controllers
         {
             if(ModelState.IsValid)
             {
-                dbContext.Add(newChef);
-                dbContext.SaveChanges();
+                DateTime dob;
+                // string date = newChef.Birthday.ToString("MM/dd/yyyy");
+                DateTime.TryParse(newChef.Birthday, out dob);
+                DateTime currentDate = DateTime.Now;
 
-                // to properly update CreatedAt and UpdatedAt
-                newChef.CreatedAt = DateTime.Now;
-                newChef.UpdatedAt = DateTime.Now;
-                dbContext.SaveChanges();
+                TimeSpan difference = currentDate - dob;
 
-                return RedirectToAction("Index");
+                DateTime age = DateTime.MinValue + difference;
+
+                int years = age.Year - 1;
+
+                if(years >= 18)
+                {
+                    newChef.Age = years;
+                    dbContext.Add(newChef);
+                    dbContext.SaveChanges();
+
+                    // to properly update CreatedAt and UpdatedAt
+                    newChef.CreatedAt = DateTime.Now;
+                    newChef.UpdatedAt = DateTime.Now;
+                    dbContext.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+                ModelState.AddModelError("Birthday", "Chef is too young");
+                return View("NewChef");
             }
             else
             {
                 return View("NewChef");
+            }
+        }
+
+        [HttpGet("dishes")]
+        public IActionResult Dishes()
+        {
+            List<Dish> allDishes = dbContext.Dishes
+            .Include(d => d.Creator)
+            .ToList();
+            return View("Dishes", allDishes);
+        }
+
+        [HttpGet("newdish")]
+        public IActionResult NewDish()
+        {
+            List<Chef> allChefs = dbContext.Chefs.ToList();
+            @ViewBag.Chefs = allChefs;   // Added "@" which fixed my problem, deleted it then it still works...???
+            return View();
+        }
+
+        [HttpPost("createdish")]
+        public IActionResult CreateDish(Dish newDish)
+        {
+            if(ModelState.IsValid)
+            {
+                int calories = (int)newDish.Calories;
+                if(calories > 0)
+                {
+                    dbContext.Add(newDish);
+                    dbContext.SaveChanges();
+
+                    // to properly update CreatedAt and UpdatedAt
+                    newDish.CreatedAt = DateTime.Now;
+                    newDish.UpdatedAt = DateTime.Now;
+                    dbContext.SaveChanges();
+
+                    return RedirectToAction("Dishes");
+                }
+
+                ModelState.AddModelError("Calories", "Calories must be greater than 0.");
+
+                return View("NewDish");
+                
+            }
+            else
+            {
+                return View("NewDish");
             }
         }
 

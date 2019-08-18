@@ -2948,6 +2948,16 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "Views/Home/NewDish.cshtml",
+      "TargetPath": "Views/Home/NewDish.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views/Home/Dishes.cshtml",
+      "TargetPath": "Views/Home/Dishes.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "Views/Shared/_CookieConsentPartial.cshtml",
       "TargetPath": "Views/Shared/_CookieConsentPartial.cshtml",
       "FileKind": "mvc"

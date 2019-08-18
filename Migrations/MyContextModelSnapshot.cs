@@ -22,6 +22,8 @@ namespace ChefsNDishes.Migrations
                     b.Property<int>("ChefId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("Age");
+
                     b.Property<string>("Birthday")
                         .IsRequired();
 
@@ -45,9 +47,10 @@ namespace ChefsNDishes.Migrations
                     b.Property<int>("DishId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("Calories");
+                    b.Property<int?>("Calories")
+                        .IsRequired();
 
-                    b.Property<int>("ChefId");
+                    b.Property<int?>("ChefId");
 
                     b.Property<DateTime>("CreatedAt");
 
@@ -72,8 +75,7 @@ namespace ChefsNDishes.Migrations
                 {
                     b.HasOne("ChefsNDishes.Models.Chef", "Creator")
                         .WithMany("CreatedDishes")
-                        .HasForeignKey("ChefId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ChefId");
                 });
 #pragma warning restore 612, 618
         }

@@ -8,17 +8,16 @@ namespace ChefsNDishes.Models
         public int DishId {get;set;}
 
         [Required]
+        [Display(Name="Dish Name")]
         public string Name {get;set;}
 
         [Required]
-        public int Calories {get;set;}
+        public int? Calories {get;set;}
 
         [Required]
         public string Description {get;set;}
 
-        public int ChefId {get;set;}
-
-        [Required]
+        public int? ChefId {get;set;}
         public Chef Creator {get;set;}
 
         [Required]
