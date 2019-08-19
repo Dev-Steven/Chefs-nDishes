@@ -17,7 +17,9 @@ namespace ChefsNDishes.Models
         [Required]
         public string Description {get;set;}
 
+        [Required]
         public int? ChefId {get;set;}
+
         public Chef Creator {get;set;}
 
         [Required]

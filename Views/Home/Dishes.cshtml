@@ -16,15 +16,15 @@
         <th scope="col">Calories</th>
         </tr>
     </thead>
-    <tbody>     
-    @foreach(var dish in Model)
-    {
-        <tr>
-            <td>@dish.Name</td>
-            <td>@dish.Creator.FirstName @dish.Creator.LastName</td>
-            <td>@dish.Tastiness</td>
-            <td>@dish.Calories</td>
-        </tr>
-    }
+    <tbody>
+        @foreach(var dish in Model)
+        {
+            <tr>
+                <td>@dish.Name</td>
+                <td>@dish.Creator.FirstName @dish.Creator.LastName</td>
+                <td>@dish.Tastiness</td>
+                <td>@dish.Calories</td>
+            </tr>
+        }    
     </tbody>
 </table>

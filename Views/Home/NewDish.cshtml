@@ -27,10 +27,12 @@
     <div class="form-group">
         <label asp-for="ChefId"></label>
         <select class="form-control" asp-for="ChefId">
-            @foreach(var chef in ViewBag.Chefs)
+        @{
+            foreach(var chef in ViewBag.allChefs)
             {
                 <option value="@chef.ChefId">@chef.FirstName @chef.LastName</option>
             }
+        }
         </select>
     </div>
     <br>

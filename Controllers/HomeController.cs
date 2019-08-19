@@ -75,7 +75,7 @@ namespace ChefsNDishes.Controllers
         public IActionResult Dishes()
         {
             List<Dish> allDishes = dbContext.Dishes
-            .Include(d => d.Creator)
+            .Include(dish => dish.Creator)
             .ToList();
             return View("Dishes", allDishes);
         }
@@ -84,7 +84,7 @@ namespace ChefsNDishes.Controllers
         public IActionResult NewDish()
         {
             List<Chef> allChefs = dbContext.Chefs.ToList();
-            @ViewBag.Chefs = allChefs;   // Added "@" which fixed my problem, deleted it then it still works...???
+            ViewBag.allChefs = allChefs;   // Added "@" which fixed my problem, deleted it then it still works...???
             return View();
         }
 
@@ -114,6 +114,8 @@ namespace ChefsNDishes.Controllers
             }
             else
             {
+                List<Chef> allChefs = dbContext.Chefs.ToList();
+                ViewBag.allChefs = allChefs;  
                 return View("NewDish");
             }
         }
